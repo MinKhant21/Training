@@ -3,6 +3,7 @@ const { list, create, update } = require("./controllers/user.controller");
 
 const userRoute = Router();
 
-userRoute.get("/", list);
+userRoute.get("/user-management/list", list);
+userRoute.post("/user-management/create", create);
 
 module.exports = userRoute;

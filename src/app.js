@@ -7,6 +7,7 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
 
+app.use(express.json());
 app.use(router);
 
 module.exports = app;
