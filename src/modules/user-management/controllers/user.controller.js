@@ -1,6 +1,7 @@
 const { User } = require("../../../../models/index");
-const { hashPassword } = require("../../../helpers/auth");
+const { hashPassword, hashPassword } = require("../../../helpers/auth");
 const { responseSuccess } = require("../../../helpers/response");
+
 
 const edit = async (req, res, next) => {
   try {
@@ -37,9 +38,10 @@ const create = async (req, res, next) => {
       throw new Error("Duplicated Email");
     }
 
-    let hashString = await hashPassword(req.body.password);
-    req.body.password = hashString;
-    let result = await User.create(req.body);
+    let hashPassword = await hashPassword(req.body.password);
+    hashPassword = req.body.password;
+
+    let result = await User.create();
     if (!result) {
       throw new Error("Cannt Create User");
     }
@@ -90,5 +92,5 @@ module.exports = {
   create,
   update,
   edit,
-  deleteUser,
+  deleteUser
 };
