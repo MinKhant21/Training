@@ -12,6 +12,9 @@ module.exports = {
       username: {
         type: Sequelize.STRING,
       },
+      role_id: {
+        type: Sequelize.INTEGER,
+      },
       email: {
         type: Sequelize.STRING,
       },
