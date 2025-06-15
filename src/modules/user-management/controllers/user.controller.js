@@ -1,5 +1,5 @@
 const { User } = require("../../../../models/index");
-const { hashPassword, hashPassword } = require("../../../helpers/auth");
+const { hashPassword } = require("../../../helpers/auth");
 const { responseSuccess } = require("../../../helpers/response");
 
 
@@ -30,18 +30,26 @@ const list = async (req, res, next) => {
 };
 const create = async (req, res, next) => {
   try {
+
+    const email = req.body.email;
     let isExitUser = await User.findOne({
-      email: req.body.email,
-    });
+            where: {email},
+            logging :false
+        });
+
+   
+    
+
 
     if (isExitUser) {
       throw new Error("Duplicated Email");
+      console.log(Object.keys(isExitUser.toJSON()));
     }
 
-    let hashPassword = await hashPassword(req.body.password);
-    hashPassword = req.body.password;
+    let hashString = await hashPassword(req.body.password);
+    hashString = req.body.password;
 
-    let result = await User.create();
+    let result = await User.create(req.body);
     if (!result) {
       throw new Error("Cannt Create User");
     }
