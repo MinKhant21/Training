@@ -2,6 +2,7 @@ const { User } = require("../../../../models/index");
 const { hashPassword } = require("../../../helpers/auth");
 const { responseSuccess } = require("../../../helpers/response");
 
+
 const edit = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -29,16 +30,25 @@ const list = async (req, res, next) => {
 };
 const create = async (req, res, next) => {
   try {
+
+    const email = req.body.email;
     let isExitUser = await User.findOne({
-      email: req.body.email,
-    });
+            where: {email},
+            logging :false
+        });
+
+   
+    
+
 
     if (isExitUser) {
       throw new Error("Duplicated Email");
+      console.log(Object.keys(isExitUser.toJSON()));
     }
 
     let hashString = await hashPassword(req.body.password);
-    req.body.password = hashString;
+    hashString = req.body.password;
+
     let result = await User.create(req.body);
     if (!result) {
       throw new Error("Cannt Create User");
@@ -90,5 +100,5 @@ module.exports = {
   create,
   update,
   edit,
-  deleteUser,
+  deleteUser
 };

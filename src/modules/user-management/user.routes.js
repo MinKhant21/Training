@@ -4,8 +4,10 @@ const {
   create,
   update,
   edit,
-  deleteUser,
+  deleteUser
 } = require("./controllers/user.controller");
+
+
 
 const userRoute = Router();
 
