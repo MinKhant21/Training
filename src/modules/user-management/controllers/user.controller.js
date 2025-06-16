@@ -37,9 +37,6 @@ const create = async (req, res, next) => {
             logging :false
         });
 
-   
-    
-
 
     if (isExitUser) {
       throw new Error("Duplicated Email");
@@ -47,7 +44,7 @@ const create = async (req, res, next) => {
     }
 
     let hashString = await hashPassword(req.body.password);
-    hashString = req.body.password;
+    req.body.password = hashString;
 
     let result = await User.create(req.body);
     if (!result) {

@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "module_id",
         as: "module",
       });
+
+      
+
     }
   }
   SubModule.init(

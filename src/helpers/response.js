@@ -7,5 +7,5 @@ const responseSuccess = (res, data, message) => {
 };
 
 module.exports = {
-  responseSuccess,
+  responseSuccess
 };

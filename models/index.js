@@ -9,6 +9,9 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
+
+
+
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -31,6 +34,10 @@ fs
     db[model.name] = model;
   });
 
+
+
+
+
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -39,5 +46,12 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+//Module, SubModule
+db.Module = require('./module')(sequelize, Sequelize.DataTypes);
+db.SubModule = require('./submodule')(sequelize, Sequelize.DataTypes);
+
+db.Module.hasMany(db.SubModule); //1 : n
+db.SubModule.belongsTo(db.Module); 
 
 module.exports = db;
