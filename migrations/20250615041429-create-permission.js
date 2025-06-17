@@ -24,10 +24,10 @@ module.exports = {
       write: {
         type: Sequelize.BOOLEAN
       },
-      creaet: {
+      create: {
         type: Sequelize.BOOLEAN
       },
-      deleet: {
+      delete: {
         type: Sequelize.BOOLEAN
       },
       createdAt: {
