@@ -10,11 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       SubModule.belongsTo(models.Module, {
-        foreignKey: "module_id",
-        as: "module",
+        foreignKey: 'module_id',
+        as: 'module'
       });
 
-      
+
+
 
     }
   }
