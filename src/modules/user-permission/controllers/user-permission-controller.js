@@ -4,7 +4,6 @@ const { Permission } = require("../../../../models/index");
 const { RolePermission } = require("../../../../models/index");
 const { responseSuccess } = require("../../../helpers/response")
 const { sequelize } = require("../../../../models/index");
- 
 const list = async (req, res, next) => {
   try {
 
