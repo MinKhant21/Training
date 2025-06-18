@@ -35,7 +35,8 @@ const list = async (req, res, next) => {
     `);
 
 
-    //console.log("Modules fetched:", modules);
+   // console.log("Modules fetched:", modules);
+   console.log("Modules fetched:")
    
 
     responseSuccess(res, modules, 'Module data');
