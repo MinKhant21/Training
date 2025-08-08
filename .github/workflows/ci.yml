@@ -1,0 +1,13 @@
+name : CI WorkFlow
+
+on :
+  pull_request : 
+    branches:
+      - main
+
+jobs :
+  build :
+    runs-on:ubuntu-latest
+
+    setps:
+      - run : echo "Hello CI is running"
